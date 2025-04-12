@@ -1,0 +1,25 @@
+service touchDaemon /odm/bin/touchDaemon
+    class core
+    user root
+    group system input root
+    seclabel u:r:recovery:s0
+
+on boot
+    # chown root root /odm/bin/touchDaemon
+    # chown system system /dev/tp_misc
+    # chown system system /dev/tp_misc1
+    chown system system /dev/tcm_hbp0
+    # chmod 0777 odm/bin/touchDaemon
+    # chmod 0777 dev/tp_misc
+    # chmod 0777 dev/tp_misc1
+    chmod 0777 dev/tcm_hbp0
+    mkdir /data/vendor/touch 0771 system system
+    mkdir /data/vendor/touch/log 0771 system system
+    chmod 0777 /data/vendor/touch/frameLog.log
+    chmod 0777 /data/vendor/touch/touchHealthInfo.log
+
+on property:vendor.oplus.touchDaemon.enable=0
+    stop touchDaemon
+
+on late-init
+    start touchDaemon

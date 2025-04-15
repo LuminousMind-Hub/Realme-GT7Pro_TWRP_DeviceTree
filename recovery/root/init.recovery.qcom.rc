@@ -74,8 +74,9 @@ on property:twrp.modules.loaded=true
     mount ext4 /dev/block/bootdevice/by-name/persist /mnt/vendor/persist ro
 
     # Load ADSP firmware for PMIC
-    wait /sys/kernel/boot_adsp/boot
+    wait /sys/kernel/boot_adsp/ssr
     write /sys/kernel/boot_adsp/boot 1
+    write /sys/kernel/boot_adsp/ssr 1
     wait /sys/class/power_supply/battery
     start vendor.health-default
     start vendor.oplus.vibrator

@@ -4,4 +4,3 @@ TWRP device tree for realme GT7 Pro
 
 Bugs: 
 - Decryption
-- OTG
